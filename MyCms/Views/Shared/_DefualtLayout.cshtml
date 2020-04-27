@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html class="no-js" dir="rtl" lang="fa-IR">
+<head>
+    <meta charset="UTF-8">
+    <title> حسن یوسفی </title>
+    <base href="">
+    <meta name="googlebot" content="index,follow">
+    <meta name="robots" content="noodp,noydir">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/bootstrap-rtl.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/Content/css/style.css">
+    <script src="/Content/js/jquery.min.js"></script>
+</head>
+<body>
+    <script src="/Content/js/modernizr.js"></script>
+
+    @*Top Menu*@
+    <div class="top-menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-5">
+                    <ul>
+                        <li><a href="/"><i class="fa fa-home"></i></a></li>
+                        <li><a href="#Contact"><i class="fa fa-envelope"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-7">
+                    <span>امروز  :  @DateTime.Now.ToShamsi()</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*End Top Menu
+        header*@
+    <header class="main-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <a href="/" class="logo"><img class="thumbnail" src="~/Content/img/pic.jpg" alt="تصویر" title="تصویر" style="max-height:150px;max-width:120px"></a>
+                    <div class="left-side">
+                        <h1><a href="/">سایت خبری  حسن یوسفی</a></h1>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <form action="/Search" method="get" class="border-radius">
+                        <input class="border-radius" name="q" type="text" placeholder=" جستجو کنید ... ">
+                        <button><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+    @*End Header
+        menu*@
+    <nav class="main-menu">
+        <div class="container">
+            <span><i class="fa fa-th-list"></i></span>
+            <ul>
+                <li><a href="/"> صفحه اصلی </a></li>
+                <li><a href="/Archive"> آرشیو اخبار </a></li>
+                <li>
+                    @Html.Action("ShowGroupsInMenu", "News")
+                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a href="/">@User.Identity.Name خوش آمدید</a></li>
+                    <li> <a href="/Account/SignOut">خروج</a></li>
+                }
+                else
+                {
+                    <li><a href="/Account/Login">ورود به سایت</a></li>
+                }
+            </ul>
+        </div>
+    </nav>
+    @*End menu*@
+
+    <div class="container margin-top-30">
+        <div class="row">
+
+            <aside class="col-md-4 col-sm-12 col-xs-12 pull-right">
+
+                @if(User.Identity.IsAuthenticated)
+                {
+                    <div class="thumbnail" id="Manage">
+                        <ul>
+                            <li>
+                                <a href="/Admin/PageGroups">مدیریت گروه ها</a>
+                            </li>
+                            <li>
+                                <a href="/Admin/Pages">مدیریت صفحات</a>
+                            </li>
+                            <li>
+                                <a href="/Admin/PageComments">مدیریت نظرات</a>
+                            </li>
+                            <li>
+                                <a href="/Admin/AdminLogins">مدیریت مدیران سایت</a>
+                            </li>
+                        </ul>
+                    </div>
+                }
+
+                @Html.Action("ShowGroups", "News")
+                <!--most views news-->
+            <div id="TopNews"> @Html.Action("TopNews", "News")</div>
+                <!--end most views news-->
+            </aside>
+
+
+            <div class="col-md-8 col-sm-12 col-xs-12 ">
+                @RenderBody()
+            </div>
+
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <section class="access-links">
+                        <header> دسترسی سریع </header>
+                        <ul>
+                            <li><a href="/"> صفحه اصلی </a></li>
+                            <li><a href="/Archive"> آرشیو اخبار </a></li>
+                            <li><a href="#TopNews"> پربازدید ترین اخبار </a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="col-md-5 col-md-offset-1 col-sm-12 col-xs-12">
+                    <div class="socials">
+                        <span id="Contact"> شبکه های اجتماعی  سایت</span>
+                        <a href="https://www.instagram.com/HasanYousefi10" title="اینستاگرام"><i class="fa fa-instagram"></i></a>
+                        <a href=https://t.me/HasanYousefi10"" title="تلگرام"><i class="fa fa-paper-plane"></i></a>
+                        <div class="clearfix"></div>
+                    </div>
+                    <p>
+                       این سفر مگه ته تهش تلخ نی ؟ <br />
+                        پ بده بره دنیارو چی بغل کردی...!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/Content/js/bootstrap.min.js"></script>
+    <script src="/Content/js/owl.carousel.js"></script>
+    <script src="/Content/js/script.js"></script>
+</body>
+</html>

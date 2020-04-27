@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DataLayer.AdminLogin>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>ادمین</h2>
+
+<p>
+    <a href="/Admin/AdminLogins/Create" class="btn btn-success">افزودن</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            <a class="btn btn-warning btn-sm" title="ویرایش" href="/Admin/AdminLogins/Edit/@item.LoginID">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a class="btn btn-danger btn-sm" title="حذف" href="/Admin/AdminLogins/Delete/@item.LoginID">
+                <i class="glyphicon glyphicon-remove"></i>
+            </a>
+            <a class="btn btn-info btn-sm" title="جزئیات" href="/Admin/AdminLogins/Details/@item.LoginID">
+                <i class="glyphicon glyphicon-adjust"></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>
